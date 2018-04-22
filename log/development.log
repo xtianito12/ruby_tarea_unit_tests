@@ -1,0 +1,566 @@
+Started GET "/" for 127.0.0.1 at 2018-04-21 10:45:46 -0500
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.5) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.5) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (151.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (105.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFields (20180322004620)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "fields" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(100), "area" decimal(18,2), "area_unit" varchar(20), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180322004620"]]
+  [1m[35m (135.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGrowers (20180322005218)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "growers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(100), "last_name" varchar(100), "phone_number" varchar(50), "email" varchar(150), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180322005218"]]
+  [1m[35m (244.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddMissingColumnsToGrower (20180322012727)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "growers" ADD "birthday" datetime[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "growers" ADD "preferred_shipping" varchar(20) DEFAULT '2DAY'[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180322012727"]]
+  [1m[35m (83.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAgronomists (20180322054702)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "agronomists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(100), "last_name" varchar(100), "birthday" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180322054702"]]
+  [1m[35m (113.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFarms (20180322055958)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "farms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(100), "bought_on" datetime, "grower_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_57b97369cd"
+FOREIGN KEY ("grower_id")
+  REFERENCES "growers" ("id")
+)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_farms_on_grower_id" ON "farms" ("grower_id")[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180322055958"]]
+  [1m[35m (116.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateContracts (20180322061006)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "contracts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "starts_at" datetime, "ends_at" datetime, "content" text, "agronomist_id" integer, "farm_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_a491104fc2"
+FOREIGN KEY ("agronomist_id")
+  REFERENCES "agronomists" ("id")
+, CONSTRAINT "fk_rails_cfec1b46b8"
+FOREIGN KEY ("farm_id")
+  REFERENCES "farms" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_contracts_on_agronomist_id" ON "contracts" ("agronomist_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_contracts_on_agronomist_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_contracts_on_agronomist_id' AND type='index'
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX "index_contracts_on_farm_id" ON "contracts" ("farm_id")[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180322061006"]]
+  [1m[35m (126.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddFarmToField (20180322080335)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "fields" ADD "farm_id" integer[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_fields_on_farm_id" ON "fields" ("farm_id")[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180322080335"]]
+  [1m[35m (116.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-21 15:46:26.960844"], ["updated_at", "2018-04-21 15:46:26.960844"]]
+  [1m[35m (90.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_contracts_on_farm_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_contracts_on_farm_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_contracts_on_agronomist_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_contracts_on_agronomist_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_farms_on_grower_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_farms_on_grower_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fields_on_farm_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fields_on_farm_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-04-21 10:46:43 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.3.0/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (4.3ms)
+Completed 200 OK in 28ms (Views: 7.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/field" for 127.0.0.1 at 2018-04-21 10:46:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/field"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/fields" for 127.0.0.1 at 2018-04-21 10:47:03 -0500
+Processing by FieldsController#index as HTML
+  Rendering fields/index.html.erb within layouts/application
+  [1m[36mField Load (0.3ms)[0m  [1m[34mSELECT "fields".* FROM "fields"[0m
+  Rendered fields/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 1526ms (Views: 1487.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/fields/new" for 127.0.0.1 at 2018-04-21 10:47:06 -0500
+Processing by FieldsController#new as HTML
+  Rendering fields/new.html.erb within layouts/application
+  Rendered fields/_form.html.erb (50.2ms)
+  Rendered fields/new.html.erb within layouts/application (51.6ms)
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 2.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    32:         @farms,
+    33:         :id,
+    34:         :name,
+    35:         { :prompt => 'Please select a Farm', :select => @field.farm.id},
+    36:         {}
+    37:         ) %>
+    38:   </div>
+  
+app/views/fields/_form.html.erb:35:in `block in _app_views_fields__form_html_erb__1630415068009036172_30400560'
+app/views/fields/_form.html.erb:1:in `_app_views_fields__form_html_erb__1630415068009036172_30400560'
+app/views/fields/new.html.erb:3:in `_app_views_fields_new_html_erb__289796457582127826_31157280'
+Started GET "/fields/new" for 127.0.0.1 at 2018-04-21 10:47:47 -0500
+Processing by FieldsController#new as HTML
+  Rendering fields/new.html.erb within layouts/application
+  Rendered fields/_form.html.erb (28.7ms)
+  Rendered fields/new.html.erb within layouts/application (33.4ms)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass
+Did you mean?  tap):
+    27:   </div>
+    28: 
+    29:   <div class="field">
+    30:     <%= form.collection_select(
+    31:         :farm_id,
+    32:         @farms,
+    33:         :id,
+  
+app/views/fields/_form.html.erb:30:in `block in _app_views_fields__form_html_erb__1630415068009036172_70195184763880'
+app/views/fields/_form.html.erb:1:in `_app_views_fields__form_html_erb__1630415068009036172_70195184763880'
+app/views/fields/new.html.erb:3:in `_app_views_fields_new_html_erb__289796457582127826_70195184798500'
+Started GET "/fields/new" for 127.0.0.1 at 2018-04-21 10:54:43 -0500
+Processing by FieldsController#new as HTML
+  Rendering fields/new.html.erb within layouts/application
+  [1m[36mFarm Load (0.2ms)[0m  [1m[34mSELECT "farms".* FROM "farms"[0m
+  Rendered fields/_form.html.erb (5.8ms)
+  Rendered fields/new.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 39ms (Views: 25.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/farms" for 127.0.0.1 at 2018-04-21 10:55:29 -0500
+Processing by FarmsController#index as HTML
+  Rendering farms/index.html.erb within layouts/application
+  [1m[36mFarm Load (0.1ms)[0m  [1m[34mSELECT "farms".* FROM "farms"[0m
+  Rendered farms/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 25ms (Views: 20.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/farms/new" for 127.0.0.1 at 2018-04-21 10:55:31 -0500
+Processing by FarmsController#new as HTML
+  Rendering farms/new.html.erb within layouts/application
+  Rendered farms/_form.html.erb (81.6ms)
+  Rendered farms/new.html.erb within layouts/application (85.3ms)
+Completed 200 OK in 204ms (Views: 159.5ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/farms" for 127.0.0.1 at 2018-04-21 10:55:42 -0500
+Processing by FarmsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DYoWNpPkw7qbouzgiP3NDQiBsb74ir3Zw+g0AEMRHNVYHSSa8M2EfbfodiqIeJJKbMdlxNB40AwFeYjWyczDeA==", "farm"=>{"name"=>"new_farm", "bought_on(1i)"=>"2018", "bought_on(2i)"=>"4", "bought_on(3i)"=>"21", "bought_on(4i)"=>"15", "bought_on(5i)"=>"55", "grower_id"=>"1"}, "commit"=>"Create Farm"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGrower Load (0.7ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering farms/new.html.erb within layouts/application
+  Rendered farms/_form.html.erb (31.8ms)
+  Rendered farms/new.html.erb within layouts/application (38.2ms)
+Completed 200 OK in 246ms (Views: 112.4ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/growers" for 127.0.0.1 at 2018-04-21 10:55:48 -0500
+Processing by GrowersController#index as HTML
+  Rendering growers/index.html.erb within layouts/application
+  [1m[36mGrower Load (0.7ms)[0m  [1m[34mSELECT "growers".* FROM "growers"[0m
+  Rendered growers/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 109ms (Views: 60.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/growers/new" for 127.0.0.1 at 2018-04-21 10:55:50 -0500
+Processing by GrowersController#new as HTML
+  Rendering growers/new.html.erb within layouts/application
+  Rendered growers/_form.html.erb (7.2ms)
+  Rendered growers/new.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 106ms (Views: 47.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/growers" for 127.0.0.1 at 2018-04-21 10:56:05 -0500
+Processing by GrowersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"b1ojM4LPUej71fxaB01TmvSQhM0B4mvZeAnFe3cj1IBVytjKTCYBAYycU8gcZMHoWllfsoSUzOg9beHb3Jn37Q==", "grower"=>{"first_name"=>"jhon", "last_name"=>"doe", "phone_number"=>"555215496", "email"=>"asd@noc.com"}, "commit"=>"Create Grower"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGrower Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "growers" WHERE "growers"."email" = ? LIMIT ?[0m  [["email", "asd@noc.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "growers" ("first_name", "last_name", "phone_number", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "jhon"], ["last_name", "doe"], ["phone_number", "555215496"], ["email", "asd@noc.com"], ["created_at", "2018-04-21 15:56:05.592631"], ["updated_at", "2018-04-21 15:56:05.592631"]]
+  [1m[35m (97.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/growers/1
+Completed 302 Found in 165ms (ActiveRecord: 98.8ms)
+
+
+Started GET "/growers/1" for 127.0.0.1 at 2018-04-21 10:56:05 -0500
+Processing by GrowersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGrower Load (0.6ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering growers/show.html.erb within layouts/application
+  Rendered growers/show.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 100ms (Views: 62.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/farms" for 127.0.0.1 at 2018-04-21 10:56:10 -0500
+Processing by FarmsController#index as HTML
+  Rendering farms/index.html.erb within layouts/application
+  [1m[36mFarm Load (0.2ms)[0m  [1m[34mSELECT "farms".* FROM "farms"[0m
+  Rendered farms/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 26ms (Views: 23.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/farms/new" for 127.0.0.1 at 2018-04-21 10:56:12 -0500
+Processing by FarmsController#new as HTML
+  Rendering farms/new.html.erb within layouts/application
+  Rendered farms/_form.html.erb (24.7ms)
+  Rendered farms/new.html.erb within layouts/application (30.4ms)
+Completed 200 OK in 90ms (Views: 84.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/farms" for 127.0.0.1 at 2018-04-21 10:56:16 -0500
+Processing by FarmsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NvI71VeeJE363oXxXt2Bi7p3xa/9fpqsjciRKwPpScxjZQl5NLdjitaUHzteWN7M3jER1dWM93lLWS39iTSWYQ==", "farm"=>{"name"=>"new_farm", "bought_on(1i)"=>"2018", "bought_on(2i)"=>"4", "bought_on(3i)"=>"21", "bought_on(4i)"=>"15", "bought_on(5i)"=>"56", "grower_id"=>"1"}, "commit"=>"Create Farm"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGrower Load (0.6ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (3.7ms)[0m  [1m[32mINSERT INTO "farms" ("name", "bought_on", "grower_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "new_farm"], ["bought_on", "2018-04-21 15:56:00"], ["grower_id", 1], ["created_at", "2018-04-21 15:56:16.917356"], ["updated_at", "2018-04-21 15:56:16.917356"]]
+  [1m[35m (243.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/farms/1
+Completed 302 Found in 280ms (ActiveRecord: 248.5ms)
+
+
+Started GET "/farms/1" for 127.0.0.1 at 2018-04-21 10:56:17 -0500
+Processing by FarmsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFarm Load (0.8ms)[0m  [1m[34mSELECT  "farms".* FROM "farms" WHERE "farms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering farms/show.html.erb within layouts/application
+  [1m[36mGrower Load (0.6ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered farms/show.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 100ms (Views: 90.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/fields" for 127.0.0.1 at 2018-04-21 10:56:40 -0500
+Processing by FieldsController#index as HTML
+  Rendering fields/index.html.erb within layouts/application
+  [1m[36mField Load (0.2ms)[0m  [1m[34mSELECT "fields".* FROM "fields"[0m
+  Rendered fields/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 24ms (Views: 19.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/fields/new" for 127.0.0.1 at 2018-04-21 10:56:43 -0500
+Processing by FieldsController#new as HTML
+  Rendering fields/new.html.erb within layouts/application
+  [1m[36mFarm Load (0.2ms)[0m  [1m[34mSELECT "farms".* FROM "farms"[0m
+  Rendered fields/_form.html.erb (4.5ms)
+  Rendered fields/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 58ms (Views: 27.0ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/fields" for 127.0.0.1 at 2018-04-21 10:56:51 -0500
+Processing by FieldsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YrW8WnoFQN9XZ4LAomJu4mT+TllGsKVqThwEU8n2B8Qoc6MEf9daQgFKjml/++YuQ5IXVaJol51YjwVatCUxfg==", "field"=>{"name"=>"Nuevo field", "area"=>"200", "area_unit"=>"acres", "farm_id"=>"1"}, "commit"=>"Create Field"}
+Unpermitted parameter: :farm_id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering fields/new.html.erb within layouts/application
+  Rendered fields/_form.html.erb (6.8ms)
+  Rendered fields/new.html.erb within layouts/application (8.6ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass
+Did you mean?  tap):
+    27:   </div>
+    28: 
+    29:   <div class="field">
+    30:     <%= form.collection_select(
+    31:         :farm_id,
+    32:         @farms,
+    33:         :id,
+  
+app/views/fields/_form.html.erb:30:in `block in _app_views_fields__form_html_erb__1630415068009036172_70195234937380'
+app/views/fields/_form.html.erb:1:in `_app_views_fields__form_html_erb__1630415068009036172_70195234937380'
+app/views/fields/new.html.erb:3:in `_app_views_fields_new_html_erb__289796457582127826_70195234805780'
+app/controllers/fields_controller.rb:36:in `block (2 levels) in create'
+app/controllers/fields_controller.rb:31:in `create'
+Started POST "/fields" for 127.0.0.1 at 2018-04-21 10:57:34 -0500
+Processing by FieldsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DFokxGZFnNcHejxdVxhdCSVJTSfDqR5Wj4GUVwgXKYUjdpYBwF3jFyhJvJLqnGfYU6HC1eiBxHPgEhecf2UTSg==", "field"=>{"name"=>"Nuevo field", "area"=>"200", "area_unit"=>"acres", "farm_id"=>"1"}, "commit"=>"Create Field"}
+Unpermitted parameter: :farm_id
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  Rendering fields/new.html.erb within layouts/application
+  Rendered fields/_form.html.erb (23.2ms)
+  Rendered fields/new.html.erb within layouts/application (29.0ms)
+Completed 500 Internal Server Error in 52ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass
+Did you mean?  tap):
+    27:   </div>
+    28: 
+    29:   <div class="field">
+    30:     <%= form.collection_select(
+    31:         :farm_id,
+    32:         @farms,
+    33:         :id,
+  
+app/views/fields/_form.html.erb:30:in `block in _app_views_fields__form_html_erb__1630415068009036172_70195201040460'
+app/views/fields/_form.html.erb:1:in `_app_views_fields__form_html_erb__1630415068009036172_70195201040460'
+app/views/fields/new.html.erb:3:in `_app_views_fields_new_html_erb__289796457582127826_70195201035920'
+app/controllers/fields_controller.rb:36:in `block (2 levels) in create'
+app/controllers/fields_controller.rb:31:in `create'
+Started POST "/fields" for 127.0.0.1 at 2018-04-21 11:13:20 -0500
+Processing by FieldsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DFokxGZFnNcHejxdVxhdCSVJTSfDqR5Wj4GUVwgXKYUjdpYBwF3jFyhJvJLqnGfYU6HC1eiBxHPgEhecf2UTSg==", "field"=>{"name"=>"Nuevo field", "area"=>"200", "area_unit"=>"acres", "farm_id"=>"1"}, "commit"=>"Create Field"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFarm Load (0.1ms)[0m  [1m[34mSELECT  "farms".* FROM "farms" WHERE "farms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fields" ("name", "area", "area_unit", "created_at", "updated_at", "farm_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Nuevo field"], ["area", 200.0], ["area_unit", "acres"], ["created_at", "2018-04-21 16:13:20.691877"], ["updated_at", "2018-04-21 16:13:20.691877"], ["farm_id", 1]]
+  [1m[35m (107.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fields/1
+Completed 302 Found in 136ms (ActiveRecord: 109.3ms)
+
+
+Started GET "/fields/1" for 127.0.0.1 at 2018-04-21 11:13:20 -0500
+Processing by FieldsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mField Load (0.6ms)[0m  [1m[34mSELECT  "fields".* FROM "fields" WHERE "fields"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fields/show.html.erb within layouts/application
+  Rendered fields/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 59ms (Views: 29.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/grower" for 127.0.0.1 at 2018-04-21 21:10:48 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/grower"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/growers" for 127.0.0.1 at 2018-04-21 21:10:52 -0500
+Processing by GrowersController#index as HTML
+  Rendering growers/index.html.erb within layouts/application
+  [1m[36mGrower Load (0.1ms)[0m  [1m[34mSELECT "growers".* FROM "growers"[0m
+  Rendered growers/index.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 180ms (Views: 170.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/growers/1/edit" for 127.0.0.1 at 2018-04-21 21:10:55 -0500
+Processing by GrowersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGrower Load (1.0ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering growers/edit.html.erb within layouts/application
+  Rendered growers/_form.html.erb (43.0ms)
+  Rendered growers/edit.html.erb within layouts/application (47.7ms)
+Completed 200 OK in 104ms (Views: 84.2ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/growers/1" for 127.0.0.1 at 2018-04-21 21:11:01 -0500
+Processing by GrowersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1Rz9i/+mzkcJW9dF7TrrOJsU3dUOqypjw8ccCNlJ9ZzXMK8ITr2mOyIaaYlyaxo+LqNIDy7C7iv0jHVeY6Vfyw==", "grower"=>{"first_name"=>"jhon", "last_name"=>"does", "phone_number"=>"555215496", "email"=>"asd@noc.com"}, "commit"=>"Update Grower", "id"=>"1"}
+  [1m[36mGrower Load (0.5ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGrower Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "growers" WHERE "growers"."email" = ? AND ("growers"."id" != ?) LIMIT ?[0m  [["email", "asd@noc.com"], ["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  Rendering growers/edit.html.erb within layouts/application
+  Rendered growers/_form.html.erb (13.2ms)
+  Rendered growers/edit.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 93ms (Views: 57.2ms | ActiveRecord: 1.7ms)
+
+
+Started PATCH "/growers/1" for 127.0.0.1 at 2018-04-21 21:11:13 -0500
+Processing by GrowersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Y2nYdNDt7JhK7lOJcfBMTdF5XkRWbJA+m9s2p96UF2tMRWqxdvWTWGXd00bMdHacp5HRtn1EShv0SLVsqeYtpA==", "grower"=>{"first_name"=>"jhon", "last_name"=>"does", "phone_number"=>"9555555555", "email"=>"asd@noc.com"}, "commit"=>"Update Grower", "id"=>"1"}
+  [1m[36mGrower Load (1.0ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGrower Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "growers" WHERE "growers"."email" = ? AND ("growers"."id" != ?) LIMIT ?[0m  [["email", "asd@noc.com"], ["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  Rendering growers/edit.html.erb within layouts/application
+  Rendered growers/_form.html.erb (15.4ms)
+  Rendered growers/edit.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 108ms (Views: 63.8ms | ActiveRecord: 2.3ms)
+
+
+Started PATCH "/growers/1" for 127.0.0.1 at 2018-04-21 21:11:21 -0500
+Processing by GrowersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oS0pexA69Pg/3O5edJ8mI8HLtU3kf9ZjmQ9GhU1L1SSOAZu+tiKLOBDvbpHJGxzytyM6v89XDEb2nMVOOjnv6w==", "grower"=>{"first_name"=>"jhon", "last_name"=>"does", "phone_number"=>"945678912", "email"=>"asd@noc.com"}, "commit"=>"Update Grower", "id"=>"1"}
+  [1m[36mGrower Load (1.7ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGrower Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "growers" WHERE "growers"."email" = ? AND ("growers"."id" != ?) LIMIT ?[0m  [["email", "asd@noc.com"], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (47.3ms)[0m  [1m[33mUPDATE "growers" SET "last_name" = ?, "phone_number" = ?, "updated_at" = ? WHERE "growers"."id" = ?[0m  [["last_name", "does"], ["phone_number", "945678912"], ["updated_at", "2018-04-22 02:11:21.099088"], ["id", 1]]
+  [1m[35m (113.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/growers/1
+Completed 302 Found in 191ms (ActiveRecord: 163.8ms)
+
+
+Started GET "/growers/1" for 127.0.0.1 at 2018-04-21 21:11:21 -0500
+Processing by GrowersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGrower Load (1.0ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering growers/show.html.erb within layouts/application
+  Rendered growers/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 106ms (Views: 98.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/growers/1/edit" for 127.0.0.1 at 2018-04-21 21:27:02 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GrowersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGrower Load (0.2ms)[0m  [1m[34mSELECT  "growers".* FROM "growers" WHERE "growers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering growers/edit.html.erb within layouts/application
+  Rendered growers/_form.html.erb (12.2ms)
+  Rendered growers/edit.html.erb within layouts/application (14.1ms)
+Completed 200 OK in 222ms (Views: 197.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/growers" for 127.0.0.1 at 2018-04-21 21:27:07 -0500
+Processing by GrowersController#index as HTML
+  Rendering growers/index.html.erb within layouts/application
+  [1m[36mGrower Load (0.9ms)[0m  [1m[34mSELECT "growers".* FROM "growers"[0m
+  Rendered growers/index.html.erb within layouts/application (14.4ms)
+Completed 200 OK in 83ms (Views: 72.9ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/growers/new" for 127.0.0.1 at 2018-04-21 21:27:10 -0500
+Processing by GrowersController#new as HTML
+  Rendering growers/new.html.erb within layouts/application
+  Rendered growers/_form.html.erb (19.0ms)
+  Rendered growers/new.html.erb within layouts/application (25.7ms)
+Completed 200 OK in 104ms (Views: 97.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/growers" for 127.0.0.1 at 2018-04-21 21:27:13 -0500
+Processing by GrowersController#index as HTML
+  Rendering growers/index.html.erb within layouts/application
+  [1m[36mGrower Load (0.3ms)[0m  [1m[34mSELECT "growers".* FROM "growers"[0m
+  Rendered growers/index.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 74ms (Views: 65.6ms | ActiveRecord: 0.3ms)
+
+

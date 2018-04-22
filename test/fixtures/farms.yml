@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+default_valid:
+  name: MyString
+  bought_on: 2018-03-22 05:59:59
+  grower: one
+
+one:
+  name: MyString
+  bought_on: 2018-03-22 05:59:59
+  grower: one
+
+two:
+  name: MyString
+  bought_on: 2018-03-22 05:59:59
+  grower: two

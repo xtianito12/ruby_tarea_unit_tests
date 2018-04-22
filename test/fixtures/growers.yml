@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+default_valid:
+  first_name: MyString
+  last_name: MyString
+  phone_number: 912345678
+  email: valid3@email.com
+
+one:
+  first_name: MyString
+  last_name: MyString
+  phone_number: 912345678
+  email: valid@email.com
+
+two:
+  first_name: MyString
+  last_name: MyString
+  phone_number: 912345678
+  email: valid2@email.com
